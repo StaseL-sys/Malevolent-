@@ -1,2 +1,19 @@
 # Google App Engine generated folder
 appengine-generated/
+
+# Node.js
+node_modules/
+dist/
+*.local
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
