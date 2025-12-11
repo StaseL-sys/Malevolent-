@@ -34,6 +34,7 @@ function ScannerForm({ targetType, onComplete }) {
       case 'iot': return 'Smart Device or IoT System';
       case 'network': return 'Network Name or WiFi SSID';
       case 'cloud': return 'Cloud Account or Project Name';
+      case 'threats': return 'Organization or System Name';
       default: return 'Enter target';
     }
   };
@@ -49,6 +50,7 @@ function ScannerForm({ targetType, onComplete }) {
       case 'iot': return 'IoT Device/System';
       case 'network': return 'Network Name';
       case 'cloud': return 'Cloud Environment';
+      case 'threats': return 'Organization/System';
       default: return 'Target';
     }
   };

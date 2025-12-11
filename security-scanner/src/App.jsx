@@ -19,7 +19,8 @@ function App() {
     { id: 'finance', name: 'Finance', icon: '💳', description: 'Assess payment systems, trading platforms, and financial API security' },
     { id: 'iot', name: 'IoT Devices', icon: '🏠', description: 'Test smart home devices, industrial IoT, and embedded systems' },
     { id: 'network', name: 'Network', icon: '🔌', description: 'Evaluate WiFi, VPN, DNS, and network infrastructure security' },
-    { id: 'cloud', name: 'Cloud', icon: '☁️', description: 'Review cloud infrastructure, containers, and serverless security' }
+    { id: 'cloud', name: 'Cloud', icon: '☁️', description: 'Review cloud infrastructure, containers, and serverless security' },
+    { id: 'threats', name: 'Threat Defense', icon: '🛡️', description: 'Assess defenses against modern threats: ransomware, malware, phishing, and attacks' }
   ]
 
   const handleScanComplete = (target, answers) => {

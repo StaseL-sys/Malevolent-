@@ -12,7 +12,8 @@ export const vulnerabilityCategories = {
   FINANCE: 'finance',
   IOT: 'iot',
   NETWORK: 'network',
-  CLOUD: 'cloud'
+  CLOUD: 'cloud',
+  THREATS: 'threats'
 };
 
 export const severityLevels = {
@@ -1071,6 +1072,285 @@ export const vulnerabilityDatabase = {
         { title: 'CIS Docker Benchmark', url: 'https://www.cisecurity.org/benchmark/docker' }
       ]
     }
+  ],
+
+  // Modern Threat Intelligence & Attack Techniques
+  threats: [
+    {
+      id: 'ransomware-attacks',
+      name: 'Modern Ransomware Attacks',
+      category: 'threats',
+      severity: 'CRITICAL',
+      description: 'Advanced ransomware strains using double extortion, supply chain attacks, and encryption to extort victims.',
+      impact: 'Complete data encryption, data exfiltration, business disruption, financial losses, regulatory penalties, reputational damage.',
+      detection: 'Monitor for unusual file encryption activity, lateral movement, data exfiltration patterns, and known ransomware indicators of compromise (IOCs)',
+      howToFix: [
+        'Implement comprehensive offline backups (3-2-1 backup strategy)',
+        'Deploy endpoint detection and response (EDR) solutions',
+        'Use application whitelisting and least privilege access',
+        'Enable and monitor email security (SPF, DKIM, DMARC)',
+        'Regular security awareness training on phishing',
+        'Network segmentation to limit lateral movement',
+        'Keep systems patched and updated',
+        'Develop and test incident response plans'
+      ],
+      resources: [
+        { title: 'CISA Ransomware Guide', url: 'https://www.cisa.gov/stopransomware' },
+        { title: 'No More Ransom Project', url: 'https://www.nomoreransom.org' }
+      ]
+    },
+    {
+      id: 'zero-day-exploits',
+      name: 'Zero-Day Exploit Detection',
+      category: 'threats',
+      severity: 'CRITICAL',
+      description: 'Previously unknown vulnerabilities actively exploited before patches are available.',
+      impact: 'Remote code execution, privilege escalation, data breaches, complete system compromise.',
+      detection: 'Behavioral analysis, anomaly detection, threat intelligence feeds, honeypots, and advanced EDR solutions',
+      howToFix: [
+        'Implement defense-in-depth security architecture',
+        'Use virtual patching and WAF for critical systems',
+        'Deploy advanced threat protection (ATP) solutions',
+        'Subscribe to threat intelligence feeds',
+        'Enable exploit mitigation technologies (DEP, ASLR, CFG)',
+        'Rapid incident response capabilities',
+        'Network traffic analysis and anomaly detection',
+        'Regular vulnerability assessments'
+      ],
+      resources: [
+        { title: 'MITRE ATT&CK Framework', url: 'https://attack.mitre.org' },
+        { title: 'Zero Day Initiative', url: 'https://www.zerodayinitiative.com' }
+      ]
+    },
+    {
+      id: 'advanced-phishing',
+      name: 'Advanced Phishing & Social Engineering',
+      category: 'threats',
+      severity: 'HIGH',
+      description: 'Sophisticated spear-phishing, business email compromise (BEC), and deepfake-enabled social engineering attacks.',
+      impact: 'Credential theft, wire fraud, data breaches, malware installation, business email compromise.',
+      detection: 'Email authentication checks, anomaly detection in email patterns, user behavior analytics, AI-powered phishing detection',
+      howToFix: [
+        'Implement multi-factor authentication (MFA) everywhere',
+        'Deploy email security solutions with AI detection',
+        'Regular security awareness training with simulated phishing',
+        'Verify unusual requests via secondary channels',
+        'Use DMARC to prevent email spoofing',
+        'Implement URL sandboxing and link analysis',
+        'Monitor for credential leaks on dark web',
+        'Establish verification procedures for financial transactions'
+      ],
+      resources: [
+        { title: 'Anti-Phishing Working Group', url: 'https://apwg.org' },
+        { title: 'NIST Phishing Guidance', url: 'https://www.nist.gov/itl/applied-cybersecurity/phishing' }
+      ]
+    },
+    {
+      id: 'supply-chain-attacks',
+      name: 'Supply Chain & Third-Party Attacks',
+      category: 'threats',
+      severity: 'CRITICAL',
+      description: 'Attacks targeting software supply chains, dependencies, and trusted third-party vendors.',
+      impact: 'Widespread compromise, backdoor installation, data breaches across multiple organizations, loss of trust.',
+      detection: 'Software composition analysis, dependency scanning, code signing verification, vendor security assessments',
+      howToFix: [
+        'Implement software bill of materials (SBOM)',
+        'Verify digital signatures and checksums',
+        'Use dependency scanning tools (Snyk, Dependabot)',
+        'Vendor security questionnaires and audits',
+        'Network segmentation for third-party access',
+        'Monitor for suspicious updates or changes',
+        'Implement zero-trust architecture',
+        'Regular security assessments of supply chain'
+      ],
+      resources: [
+        { title: 'NIST Supply Chain Security', url: 'https://www.nist.gov/itl/executive-order-improving-nations-cybersecurity/software-supply-chain-security-guidance' },
+        { title: 'CISA Supply Chain Risk Management', url: 'https://www.cisa.gov/supply-chain' }
+      ]
+    },
+    {
+      id: 'fileless-malware',
+      name: 'Fileless & Living-off-the-Land Attacks',
+      category: 'threats',
+      severity: 'HIGH',
+      description: 'Memory-based malware and attacks using legitimate system tools (PowerShell, WMI, etc.) to evade detection.',
+      impact: 'Undetected persistence, credential theft, lateral movement, data exfiltration, difficult forensics.',
+      detection: 'Memory forensics, behavioral analysis, PowerShell logging, command-line auditing, EDR solutions',
+      howToFix: [
+        'Enable PowerShell script block logging',
+        'Implement application whitelisting (AppLocker)',
+        'Deploy memory protection and scanning',
+        'Monitor command-line activity and arguments',
+        'Restrict administrative tool access',
+        'Use constrained language mode for PowerShell',
+        'Enable Windows Defender Application Control (WDAC)',
+        'Behavioral monitoring and anomaly detection'
+      ],
+      resources: [
+        { title: 'MITRE ATT&CK: Living off the Land', url: 'https://attack.mitre.org/techniques/T1218' },
+        { title: 'Fileless Malware Defense', url: 'https://www.sans.org/white-papers/fileless-malware' }
+      ]
+    },
+    {
+      id: 'apt-tactics',
+      name: 'Advanced Persistent Threat (APT) Tactics',
+      category: 'threats',
+      severity: 'CRITICAL',
+      description: 'Nation-state and organized cybercrime groups using advanced techniques for long-term access.',
+      impact: 'Prolonged data theft, espionage, intellectual property theft, critical infrastructure compromise.',
+      detection: 'Threat hunting, advanced analytics, network traffic analysis, endpoint telemetry, threat intelligence',
+      howToFix: [
+        'Implement comprehensive logging and SIEM',
+        'Deploy deception technology (honeypots, honeytokens)',
+        'Regular threat hunting activities',
+        'Network segmentation and micro-segmentation',
+        'Implement zero-trust network architecture',
+        'Advanced endpoint protection with behavioral analysis',
+        'Threat intelligence sharing and correlation',
+        'Regular security assessments and red team exercises'
+      ],
+      resources: [
+        { title: 'MITRE ATT&CK for Enterprise', url: 'https://attack.mitre.org/matrices/enterprise' },
+        { title: 'APT Groups and Operations', url: 'https://attack.mitre.org/groups' }
+      ]
+    },
+    {
+      id: 'cryptojacking',
+      name: 'Cryptojacking & Resource Hijacking',
+      category: 'threats',
+      severity: 'MEDIUM',
+      description: 'Unauthorized use of computing resources to mine cryptocurrency or perform distributed computing.',
+      impact: 'Performance degradation, increased costs, resource exhaustion, potential gateway to other attacks.',
+      detection: 'Monitor CPU/GPU usage, network traffic to mining pools, browser extension analysis, process monitoring',
+      howToFix: [
+        'Deploy anti-cryptomining browser extensions',
+        'Monitor and alert on unusual resource consumption',
+        'Block known mining domains at firewall/DNS level',
+        'Regular vulnerability scanning and patching',
+        'Implement content security policies (CSP)',
+        'Use ad blockers and script blockers',
+        'Monitor cloud resource usage and alerts',
+        'Educate users on cryptojacking risks'
+      ],
+      resources: [
+        { title: 'Cryptojacking Defense Guide', url: 'https://www.nomoreransom.org/en/prevention-advice.html' }
+      ]
+    },
+    {
+      id: 'botnet-ddos',
+      name: 'Botnet & DDoS Attacks',
+      category: 'threats',
+      severity: 'HIGH',
+      description: 'Distributed denial-of-service attacks using compromised devices (IoT botnets) to overwhelm targets.',
+      impact: 'Service unavailability, revenue loss, reputational damage, ransom demands, resource exhaustion.',
+      detection: 'Traffic pattern analysis, rate limiting triggers, anomaly detection, DDoS mitigation service alerts',
+      howToFix: [
+        'Implement DDoS protection services (Cloudflare, Akamai)',
+        'Deploy rate limiting and traffic filtering',
+        'Use content delivery networks (CDNs)',
+        'Implement auto-scaling infrastructure',
+        'Configure network-level DDoS mitigation',
+        'Maintain incident response playbooks',
+        'Monitor traffic patterns and establish baselines',
+        'Secure IoT devices to prevent botnet recruitment'
+      ],
+      resources: [
+        { title: 'CISA DDoS Quick Guide', url: 'https://www.cisa.gov/sites/default/files/publications/DDoS%20Quick%20Guide.pdf' },
+        { title: 'Cloudflare DDoS Trends', url: 'https://radar.cloudflare.com/ddos' }
+      ]
+    },
+    {
+      id: 'ai-powered-attacks',
+      name: 'AI-Powered & Automated Attacks',
+      category: 'threats',
+      severity: 'HIGH',
+      description: 'Machine learning-enhanced attacks including deepfakes, automated vulnerability discovery, and adaptive malware.',
+      impact: 'Highly convincing social engineering, rapid vulnerability exploitation, evasion of traditional defenses.',
+      detection: 'AI-powered defense systems, deepfake detection tools, behavioral analysis, advanced threat intelligence',
+      howToFix: [
+        'Implement AI-powered security tools',
+        'Use deepfake detection technologies',
+        'Multi-factor authentication with biometrics',
+        'Establish verification procedures for sensitive actions',
+        'Deploy behavioral analytics and anomaly detection',
+        'Regular security awareness training on AI threats',
+        'Automated threat intelligence and response',
+        'Continuous monitoring and adaptive defenses'
+      ],
+      resources: [
+        { title: 'MITRE ATLAS - AI Threat Landscape', url: 'https://atlas.mitre.org' },
+        { title: 'AI Security Best Practices', url: 'https://owasp.org/www-project-machine-learning-security-top-10' }
+      ]
+    },
+    {
+      id: 'insider-threats',
+      name: 'Insider Threats & Privilege Abuse',
+      category: 'threats',
+      severity: 'HIGH',
+      description: 'Malicious or negligent insiders misusing authorized access to steal data or cause harm.',
+      impact: 'Data theft, sabotage, intellectual property loss, compliance violations, financial fraud.',
+      detection: 'User behavior analytics (UBA), data loss prevention (DLP), privileged access monitoring, audit logging',
+      howToFix: [
+        'Implement least privilege access controls',
+        'Deploy user behavior analytics (UBA)',
+        'Use data loss prevention (DLP) solutions',
+        'Monitor privileged account activity',
+        'Implement separation of duties',
+        'Regular access reviews and recertification',
+        'Background checks and security clearances',
+        'Exit procedures for departing employees'
+      ],
+      resources: [
+        { title: 'CISA Insider Threat Mitigation', url: 'https://www.cisa.gov/topics/physical-security/insider-threat-mitigation' },
+        { title: 'CERT Insider Threat Center', url: 'https://www.sei.cmu.edu/about/divisions/cert/index.cfm' }
+      ]
+    },
+    {
+      id: 'mobile-malware',
+      name: 'Mobile Malware & App-Based Threats',
+      category: 'threats',
+      severity: 'MEDIUM',
+      description: 'Malicious mobile apps, banking trojans, spyware, and SMS fraud targeting smartphones.',
+      impact: 'Data theft, financial fraud, unauthorized access, privacy invasion, device compromise.',
+      detection: 'Mobile device management (MDM), app store security, behavioral analysis, antivirus scanning',
+      howToFix: [
+        'Deploy mobile device management (MDM) solutions',
+        'Use mobile threat defense (MTD) platforms',
+        'Only install apps from official stores',
+        'Review app permissions carefully',
+        'Keep mobile OS and apps updated',
+        'Use mobile antivirus and security apps',
+        'Implement containerization for work data',
+        'Enable remote wipe capabilities'
+      ],
+      resources: [
+        { title: 'OWASP Mobile Security', url: 'https://owasp.org/www-project-mobile-security' },
+        { title: 'NIST Mobile Device Security', url: 'https://www.nist.gov/programs-projects/mobile-device-security' }
+      ]
+    },
+    {
+      id: 'credential-stuffing',
+      name: 'Credential Stuffing & Account Takeover',
+      category: 'threats',
+      severity: 'HIGH',
+      description: 'Automated attacks using leaked credentials to compromise accounts through credential reuse.',
+      impact: 'Account takeover, identity theft, financial fraud, data breaches, reputational damage.',
+      detection: 'Failed login monitoring, impossible travel detection, device fingerprinting, CAPTCHA triggers',
+      howToFix: [
+        'Enforce multi-factor authentication (MFA)',
+        'Implement rate limiting on login attempts',
+        'Use CAPTCHA for suspicious activity',
+        'Monitor for leaked credentials',
+        'Implement password complexity requirements',
+        'Use passwordless authentication where possible',
+        'Deploy bot detection and mitigation',
+        'Educate users on password hygiene and password managers'
+      ],
+      resources: [
+        { title: 'OWASP Credential Stuffing Prevention', url: 'https://cheatsheetseries.owasp.org/cheatsheets/Credential_Stuffing_Prevention_Cheat_Sheet.html' },
+        { title: 'Have I Been Pwned', url: 'https://haveibeenpwned.com' }
+      ]
+    }
   ]
 };
 
@@ -1160,6 +1440,16 @@ export const scanningChecklists = {
     { id: 'encryption', label: 'Data encrypted at rest', severity: 'HIGH' },
     { id: 'mfa-cloud', label: 'MFA enabled for all accounts', severity: 'HIGH' },
     { id: 'cspm', label: 'Security posture monitoring', severity: 'MEDIUM' }
+  ],
+  threats: [
+    { id: 'backups', label: 'Offline backups for ransomware protection', severity: 'CRITICAL' },
+    { id: 'edr', label: 'Endpoint detection and response deployed', severity: 'CRITICAL' },
+    { id: 'patch-mgmt', label: 'Regular patching against zero-days', severity: 'CRITICAL' },
+    { id: 'mfa-everywhere', label: 'MFA on all accounts', severity: 'CRITICAL' },
+    { id: 'phishing-training', label: 'Regular security awareness training', severity: 'HIGH' },
+    { id: 'threat-intel', label: 'Threat intelligence feeds monitored', severity: 'HIGH' },
+    { id: 'incident-response', label: 'Incident response plan tested', severity: 'HIGH' },
+    { id: 'network-monitoring', label: 'Network traffic analysis enabled', severity: 'MEDIUM' }
   ]
 };
 
@@ -1293,6 +1583,46 @@ export const learningModules = [
     description: 'Navigate PCI DSS, GDPR, SOC 2, and other standards',
     topics: ['PCI DSS', 'GDPR', 'HIPAA', 'SOC 2', 'ISO 27001'],
     duration: '90 min',
+    level: 'Intermediate'
+  },
+  {
+    id: 'modern-threats',
+    title: 'Modern Threat Landscape',
+    description: 'Current hacking techniques and attack methods',
+    topics: ['Ransomware Tactics', 'Zero-Day Exploits', 'APT Techniques', 'Fileless Malware'],
+    duration: '90 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'malware-analysis',
+    title: 'Malware Analysis & Reverse Engineering',
+    description: 'Analyze and reverse engineer malicious software',
+    topics: ['Static Analysis', 'Dynamic Analysis', 'Malware Families', 'Behavioral Analysis'],
+    duration: '120 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'threat-hunting',
+    title: 'Threat Hunting & Detection',
+    description: 'Proactive threat detection and hunting techniques',
+    topics: ['Threat Intelligence', 'MITRE ATT&CK', 'IOC Analysis', 'Behavioral Analytics'],
+    duration: '90 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'defensive-security',
+    title: 'Defensive Security Operations',
+    description: 'Build and operate security defenses',
+    topics: ['SIEM Operations', 'EDR/XDR', 'Threat Detection', 'Security Automation'],
+    duration: '120 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'cybercrime-trends',
+    title: 'Cybercrime & Fraud Prevention',
+    description: 'Combat fraud, cyber bullying, and online threats',
+    topics: ['Online Fraud Detection', 'Identity Theft Prevention', 'Cyber Bullying Response', 'Digital Forensics'],
+    duration: '75 min',
     level: 'Intermediate'
   }
 ];
