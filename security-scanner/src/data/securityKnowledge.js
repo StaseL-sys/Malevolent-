@@ -8,7 +8,11 @@ export const vulnerabilityCategories = {
   EMAIL: 'email',
   SERVER: 'server',
   APPLICATION: 'application',
-  DATA: 'data'
+  DATA: 'data',
+  FINANCE: 'finance',
+  IOT: 'iot',
+  NETWORK: 'network',
+  CLOUD: 'cloud'
 };
 
 export const severityLevels = {
@@ -599,6 +603,474 @@ export const vulnerabilityDatabase = {
         { title: 'NIST Backup Encryption Guidelines', url: 'https://www.nist.gov/cyberframework' }
       ]
     }
+  ],
+
+  // Finance & Payment Security
+  finance: [
+    {
+      id: 'payment-card-data-exposure',
+      name: 'Payment Card Data Exposure',
+      category: 'finance',
+      severity: 'CRITICAL',
+      description: 'Payment card data (PAN, CVV, expiry) is stored, transmitted, or logged insecurely.',
+      impact: 'Breach of PCI DSS compliance, financial fraud, regulatory fines, loss of customer trust, potential card-not-present fraud.',
+      detection: 'Audit database, logs, and code for unencrypted or unnecessarily stored card data',
+      howToFix: [
+        'Never store full PAN, CVV, or magnetic stripe data',
+        'Use tokenization for card storage',
+        'Implement PCI DSS compliant payment gateway',
+        'Use end-to-end encryption for card data transmission',
+        'Limit card data storage to tokenized references only',
+        'Implement data masking (show only last 4 digits)',
+        'Regular PCI DSS compliance audits'
+      ],
+      resources: [
+        { title: 'PCI DSS Requirements', url: 'https://www.pcisecuritystandards.org' },
+        { title: 'Payment Tokenization Guide', url: 'https://owasp.org/www-community/vulnerabilities/Payment_Card_Industry_Data_Security_Standard' }
+      ]
+    },
+    {
+      id: 'insecure-financial-api',
+      name: 'Insecure Financial Transaction API',
+      category: 'finance',
+      severity: 'CRITICAL',
+      description: 'Financial APIs lack proper authentication, rate limiting, or transaction validation.',
+      impact: 'Unauthorized transfers, account takeover, financial loss, fraudulent transactions, API abuse.',
+      detection: 'Test APIs for authentication bypass, replay attacks, and insufficient validation',
+      howToFix: [
+        'Implement OAuth 2.0 or strong API key authentication',
+        'Use transaction signing with digital signatures',
+        'Implement idempotency keys to prevent duplicate transactions',
+        'Add strict rate limiting on financial operations',
+        'Require multi-factor authentication for high-value transactions',
+        'Implement real-time fraud detection',
+        'Log all financial transactions with audit trails'
+      ],
+      resources: [
+        { title: 'OWASP API Security Top 10', url: 'https://owasp.org/www-project-api-security' },
+        { title: 'Financial API Security', url: 'https://www.openbanking.org.uk/security' }
+      ]
+    },
+    {
+      id: 'weak-transaction-integrity',
+      name: 'Weak Transaction Integrity Checks',
+      category: 'finance',
+      severity: 'HIGH',
+      description: 'Financial transactions lack integrity verification, allowing manipulation of amounts or recipients.',
+      impact: 'Transaction tampering, incorrect payment amounts, fraudulent beneficiary changes, financial loss.',
+      detection: 'Intercept and modify transaction parameters to test validation',
+      howToFix: [
+        'Implement cryptographic signing of transaction data',
+        'Use HMAC or digital signatures to verify transaction integrity',
+        'Validate all transaction parameters server-side',
+        'Implement transaction confirmation workflow',
+        'Use secure random transaction IDs',
+        'Implement double-entry bookkeeping verification',
+        'Add anomaly detection for unusual transaction patterns'
+      ],
+      resources: [
+        { title: 'Transaction Security Best Practices', url: 'https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html' }
+      ]
+    },
+    {
+      id: 'insufficient-kyc',
+      name: 'Insufficient KYC/AML Controls',
+      category: 'finance',
+      severity: 'HIGH',
+      description: 'Know Your Customer (KYC) and Anti-Money Laundering (AML) controls are weak or bypassable.',
+      impact: 'Regulatory non-compliance, money laundering, terrorist financing, identity fraud, heavy fines.',
+      detection: 'Review KYC verification process for weaknesses and bypass methods',
+      howToFix: [
+        'Implement multi-layered identity verification',
+        'Use government ID verification services',
+        'Implement liveness detection for document verification',
+        'Monitor for suspicious transaction patterns',
+        'Implement automated AML screening',
+        'Maintain comprehensive audit logs',
+        'Regular compliance training for staff'
+      ],
+      resources: [
+        { title: 'FATF AML Guidelines', url: 'https://www.fatf-gafi.org' },
+        { title: 'KYC Best Practices', url: 'https://www.swift.com/standards/kyc-registry' }
+      ]
+    },
+    {
+      id: 'cryptocurrency-wallet-security',
+      name: 'Weak Cryptocurrency Wallet Security',
+      category: 'finance',
+      severity: 'CRITICAL',
+      description: 'Cryptocurrency private keys or seed phrases are stored insecurely.',
+      impact: 'Complete loss of funds, irreversible theft, no recourse for recovery.',
+      detection: 'Audit storage mechanisms for private keys and wallet security',
+      howToFix: [
+        'Use hardware security modules (HSM) for key storage',
+        'Implement multi-signature wallets for high-value accounts',
+        'Use cold storage for majority of funds',
+        'Encrypt private keys with strong passphrases',
+        'Implement key sharding for critical wallets',
+        'Regular security audits of wallet infrastructure',
+        'Use time-locked transactions for added security'
+      ],
+      resources: [
+        { title: 'Cryptocurrency Security Standards', url: 'https://www.ccss.info' },
+        { title: 'Bitcoin Security Guide', url: 'https://bitcoin.org/en/secure-your-wallet' }
+      ]
+    },
+    {
+      id: 'price-manipulation',
+      name: 'Price Oracle Manipulation',
+      category: 'finance',
+      severity: 'HIGH',
+      description: 'Financial systems rely on single or easily manipulated price sources.',
+      impact: 'Market manipulation, incorrect pricing, arbitrage exploitation, financial losses.',
+      detection: 'Analyze price feed sources and test for manipulation scenarios',
+      howToFix: [
+        'Use multiple independent price oracles',
+        'Implement price deviation checks and alerts',
+        'Use time-weighted average prices (TWAP)',
+        'Add circuit breakers for extreme price movements',
+        'Verify oracle data cryptographically',
+        'Implement fallback price sources',
+        'Regular audits of price feed integrity'
+      ],
+      resources: [
+        { title: 'Chainlink Oracle Security', url: 'https://docs.chain.link/docs/architecture-decentralized-model' }
+      ]
+    }
+  ],
+
+  // IoT & Hardware Security
+  iot: [
+    {
+      id: 'default-iot-credentials',
+      name: 'Default IoT Device Credentials',
+      category: 'iot',
+      severity: 'CRITICAL',
+      description: 'IoT devices shipped with default usernames and passwords that are publicly known.',
+      impact: 'Complete device compromise, botnet recruitment, privacy invasion, lateral network movement.',
+      detection: 'Search device documentation and online databases for default credentials',
+      howToFix: [
+        'Force password change on first use',
+        'Generate unique credentials per device',
+        'Disable default accounts entirely',
+        'Implement certificate-based authentication',
+        'Regular firmware updates to patch vulnerabilities',
+        'Network segmentation for IoT devices',
+        'Monitor for unauthorized access attempts'
+      ],
+      resources: [
+        { title: 'IoT Security Foundation', url: 'https://www.iotsecurityfoundation.org' },
+        { title: 'NIST IoT Security Guidelines', url: 'https://www.nist.gov/programs-projects/nist-cybersecurity-iot-program' }
+      ]
+    },
+    {
+      id: 'insecure-firmware',
+      name: 'Insecure Firmware Updates',
+      category: 'iot',
+      severity: 'CRITICAL',
+      description: 'IoT firmware updates lack signature verification or use insecure channels.',
+      impact: 'Malicious firmware injection, device bricking, backdoor installation, complete device control.',
+      detection: 'Analyze firmware update process for security controls',
+      howToFix: [
+        'Implement code signing for all firmware',
+        'Use secure boot to verify firmware integrity',
+        'Encrypt firmware during transmission',
+        'Implement rollback protection',
+        'Use over-the-air (OTA) update security best practices',
+        'Verify update server certificates',
+        'Implement firmware version verification'
+      ],
+      resources: [
+        { title: 'OWASP IoT Top 10', url: 'https://owasp.org/www-project-internet-of-things' },
+        { title: 'IoT Firmware Security', url: 'https://www.embedded.com/firmware-security-best-practices' }
+      ]
+    },
+    {
+      id: 'physical-access-vulnerability',
+      name: 'Physical Access Vulnerabilities',
+      category: 'iot',
+      severity: 'HIGH',
+      description: 'Devices lack protection against physical tampering or debugging interfaces.',
+      impact: 'Firmware extraction, key extraction, device cloning, reverse engineering.',
+      detection: 'Physical inspection for exposed debug ports (JTAG, UART)',
+      howToFix: [
+        'Disable or remove debug interfaces in production',
+        'Use tamper-evident seals and enclosures',
+        'Implement secure boot and verified boot chains',
+        'Use hardware security modules (HSM) for key storage',
+        'Encrypt sensitive data in flash memory',
+        'Add tamper detection circuitry',
+        'Use chip-level security features (TrustZone, etc.)'
+      ],
+      resources: [
+        { title: 'Hardware Hacking Guide', url: 'https://www.iacr.org/books/2010_rabaey_low-power.pdf' }
+      ]
+    },
+    {
+      id: 'smart-home-privacy',
+      name: 'Smart Home Device Privacy Leaks',
+      category: 'iot',
+      severity: 'HIGH',
+      description: 'Smart home devices collect and transmit excessive personal data without proper consent.',
+      impact: 'Privacy invasion, behavioral tracking, data sale to third parties, surveillance.',
+      detection: 'Network traffic analysis to identify data being transmitted',
+      howToFix: [
+        'Implement data minimization - collect only necessary data',
+        'Provide clear privacy policies and opt-in consent',
+        'Encrypt all data transmission',
+        'Implement local processing where possible',
+        'Allow users to delete their data',
+        'Regular privacy impact assessments',
+        'Comply with GDPR, CCPA regulations'
+      ],
+      resources: [
+        { title: 'IoT Privacy Guidelines', url: 'https://www.ftc.gov/tips-advice/business-center/guidance/internet-things-privacy-security-connected-world' }
+      ]
+    },
+    {
+      id: 'weak-iot-network-security',
+      name: 'Weak IoT Network Security',
+      category: 'iot',
+      severity: 'HIGH',
+      description: 'IoT devices use weak encryption or unencrypted communication protocols.',
+      impact: 'Traffic interception, command injection, device control, network compromise.',
+      detection: 'Packet capture and analysis of device communications',
+      howToFix: [
+        'Use TLS 1.3 for all network communications',
+        'Implement certificate pinning',
+        'Use VPN or encrypted tunnels for remote access',
+        'Disable insecure protocols (Telnet, HTTP)',
+        'Implement network segmentation',
+        'Use strong WiFi encryption (WPA3)',
+        'Regular security audits of network traffic'
+      ],
+      resources: [
+        { title: 'IoT Network Security', url: 'https://www.cisco.com/c/en/us/solutions/internet-of-things/iot-security.html' }
+      ]
+    }
+  ],
+
+  // Network & Infrastructure Pentesting
+  network: [
+    {
+      id: 'weak-wifi-security',
+      name: 'Weak WiFi Security',
+      category: 'network',
+      severity: 'HIGH',
+      description: 'Wireless networks use outdated encryption (WEP, WPA) or weak passwords.',
+      impact: 'Unauthorized network access, traffic interception, man-in-the-middle attacks, rogue access points.',
+      detection: 'WiFi scanning tools (airodump-ng, Kismet) to identify security protocols',
+      howToFix: [
+        'Use WPA3 encryption (or WPA2 as minimum)',
+        'Implement strong, random WiFi passwords (20+ characters)',
+        'Enable network isolation for guest networks',
+        'Use enterprise WiFi with 802.1X authentication',
+        'Disable WPS (WiFi Protected Setup)',
+        'Hide SSID broadcast for corporate networks',
+        'Regular wireless security audits'
+      ],
+      resources: [
+        { title: 'WiFi Security Best Practices', url: 'https://www.wi-fi.org/discover-wi-fi/security' },
+        { title: 'WPA3 Security', url: 'https://www.wi-fi.org/discover-wi-fi/wi-fi-certified-wpa3' }
+      ]
+    },
+    {
+      id: 'network-segmentation-failure',
+      name: 'Poor Network Segmentation',
+      category: 'network',
+      severity: 'HIGH',
+      description: 'Flat network architecture allows lateral movement between different security zones.',
+      impact: 'Complete network compromise from single entry point, data breach expansion, difficulty in containment.',
+      detection: 'Network mapping and penetration testing for lateral movement',
+      howToFix: [
+        'Implement VLANs to separate network segments',
+        'Use internal firewalls between segments',
+        'Apply zero-trust network principles',
+        'Separate guest, corporate, and IoT networks',
+        'Implement micro-segmentation for critical assets',
+        'Use network access control (NAC)',
+        'Regular network architecture reviews'
+      ],
+      resources: [
+        { title: 'Network Segmentation Guide', url: 'https://www.nist.gov/publications/guide-securing-legacy-ieee-80211-wireless-networks' },
+        { title: 'Zero Trust Architecture', url: 'https://www.nist.gov/publications/zero-trust-architecture' }
+      ]
+    },
+    {
+      id: 'dns-security-issues',
+      name: 'DNS Security Vulnerabilities',
+      category: 'network',
+      severity: 'MEDIUM',
+      description: 'DNS infrastructure lacks DNSSEC or is vulnerable to cache poisoning.',
+      impact: 'Traffic redirection, phishing attacks, man-in-the-middle, DNS spoofing.',
+      detection: 'DNS security audit tools (DNSViz, DNSSec-Analyzer)',
+      howToFix: [
+        'Implement DNSSEC for domain validation',
+        'Use secure DNS resolvers (DNS-over-HTTPS, DNS-over-TLS)',
+        'Enable DNS response rate limiting',
+        'Separate authoritative and recursive DNS servers',
+        'Implement DNS firewall/filtering',
+        'Monitor for DNS anomalies',
+        'Regular DNS security audits'
+      ],
+      resources: [
+        { title: 'DNSSEC Deployment', url: 'https://www.icann.org/resources/pages/dnssec-2014-01-29-en' }
+      ]
+    },
+    {
+      id: 'vpn-vulnerabilities',
+      name: 'VPN Security Weaknesses',
+      category: 'network',
+      severity: 'HIGH',
+      description: 'VPN uses weak encryption, outdated protocols, or has configuration issues.',
+      impact: 'Traffic decryption, unauthorized network access, credential theft, man-in-the-middle attacks.',
+      detection: 'VPN protocol and cipher analysis',
+      howToFix: [
+        'Use modern VPN protocols (WireGuard, IKEv2)',
+        'Disable legacy protocols (PPTP, L2TP without IPSec)',
+        'Implement strong encryption (AES-256)',
+        'Use certificate-based authentication',
+        'Enable perfect forward secrecy',
+        'Regular VPN security audits',
+        'Implement VPN kill switch'
+      ],
+      resources: [
+        { title: 'VPN Security Best Practices', url: 'https://www.nist.gov/publications/guide-ipsec-vpns' }
+      ]
+    },
+    {
+      id: 'mitm-vulnerability',
+      name: 'Man-in-the-Middle Attack Surface',
+      category: 'network',
+      severity: 'HIGH',
+      description: 'Network lacks protection against ARP spoofing, rogue DHCP, or SSL stripping.',
+      impact: 'Traffic interception, credential theft, session hijacking, data manipulation.',
+      detection: 'Network monitoring for ARP anomalies and rogue DHCP servers',
+      howToFix: [
+        'Implement ARP inspection (DAI) on switches',
+        'Use DHCP snooping',
+        'Enable 802.1X port authentication',
+        'Implement HSTS to prevent SSL stripping',
+        'Use certificate pinning for critical connections',
+        'Deploy network intrusion detection (IDS/IPS)',
+        'Regular network security monitoring'
+      ],
+      resources: [
+        { title: 'MITM Attack Prevention', url: 'https://owasp.org/www-community/attacks/Man-in-the-middle_attack' }
+      ]
+    }
+  ],
+
+  // Cloud Security
+  cloud: [
+    {
+      id: 'cloud-misconfig',
+      name: 'Cloud Resource Misconfiguration',
+      category: 'cloud',
+      severity: 'CRITICAL',
+      description: 'Cloud storage buckets, databases, or services are publicly accessible.',
+      impact: 'Data breach, unauthorized access, data deletion, cryptocurrency mining, massive costs.',
+      detection: 'Cloud security posture management tools (ScoutSuite, Prowler)',
+      howToFix: [
+        'Enable private access by default for all resources',
+        'Use IAM policies with least privilege',
+        'Enable bucket/blob encryption',
+        'Implement cloud security posture management (CSPM)',
+        'Regular security audits of cloud configurations',
+        'Use infrastructure-as-code with security scanning',
+        'Enable cloud provider security services (GuardDuty, Security Center)'
+      ],
+      resources: [
+        { title: 'AWS Security Best Practices', url: 'https://aws.amazon.com/security/best-practices' },
+        { title: 'Azure Security Benchmarks', url: 'https://docs.microsoft.com/en-us/security/benchmark/azure' },
+        { title: 'GCP Security Best Practices', url: 'https://cloud.google.com/security/best-practices' }
+      ]
+    },
+    {
+      id: 'excessive-cloud-permissions',
+      name: 'Excessive Cloud IAM Permissions',
+      category: 'cloud',
+      severity: 'HIGH',
+      description: 'Cloud identities have overly broad permissions beyond what they need.',
+      impact: 'Privilege escalation, lateral movement, resource abuse, data access beyond authorization.',
+      detection: 'IAM policy analysis tools and access reviews',
+      howToFix: [
+        'Apply principle of least privilege',
+        'Use role-based access control (RBAC)',
+        'Implement just-in-time (JIT) access',
+        'Regular access reviews and cleanup',
+        'Use service accounts with minimal permissions',
+        'Enable MFA for all accounts',
+        'Monitor for unused permissions'
+      ],
+      resources: [
+        { title: 'Cloud IAM Best Practices', url: 'https://cloud.google.com/iam/docs/best-practices' }
+      ]
+    },
+    {
+      id: 'cloud-api-key-exposure',
+      name: 'Exposed Cloud API Keys',
+      category: 'cloud',
+      severity: 'CRITICAL',
+      description: 'Cloud provider API keys committed to code repositories or exposed in logs.',
+      impact: 'Complete cloud account compromise, resource abuse, data theft, massive financial costs.',
+      detection: 'Secret scanning tools (GitGuardian, TruffleHog, git-secrets)',
+      howToFix: [
+        'Use secrets management services (AWS Secrets Manager, Azure Key Vault)',
+        'Implement automated secret scanning in CI/CD',
+        'Rotate keys regularly',
+        'Use IAM roles instead of access keys when possible',
+        'Enable CloudTrail/Activity Logs to detect key usage',
+        'Revoke exposed keys immediately',
+        'Add pre-commit hooks to prevent secret commits'
+      ],
+      resources: [
+        { title: 'Secret Management Guide', url: 'https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html' }
+      ]
+    },
+    {
+      id: 'serverless-security',
+      name: 'Serverless Function Security Issues',
+      category: 'cloud',
+      severity: 'HIGH',
+      description: 'Serverless functions lack proper input validation, logging, or security controls.',
+      impact: 'Code injection, resource exhaustion, data leaks, unauthorized actions.',
+      detection: 'Review function code and permissions for security gaps',
+      howToFix: [
+        'Implement input validation in all functions',
+        'Use least privilege IAM roles per function',
+        'Enable function-level logging and monitoring',
+        'Implement rate limiting and timeout controls',
+        'Scan function dependencies for vulnerabilities',
+        'Use environment variables for secrets',
+        'Regular security reviews of function code'
+      ],
+      resources: [
+        { title: 'Serverless Security', url: 'https://owasp.org/www-project-serverless-top-10' }
+      ]
+    },
+    {
+      id: 'container-security',
+      name: 'Container Security Vulnerabilities',
+      category: 'cloud',
+      severity: 'HIGH',
+      description: 'Containers run with excessive privileges or contain vulnerable dependencies.',
+      impact: 'Container escape, host compromise, lateral movement, privilege escalation.',
+      detection: 'Container image scanning (Trivy, Clair, Snyk)',
+      howToFix: [
+        'Scan images for vulnerabilities before deployment',
+        'Use minimal base images (Alpine, distroless)',
+        'Run containers as non-root users',
+        'Implement pod security policies/standards',
+        'Use network policies to restrict traffic',
+        'Enable runtime security monitoring',
+        'Regular image updates and patches'
+      ],
+      resources: [
+        { title: 'Container Security Best Practices', url: 'https://kubernetes.io/docs/concepts/security' },
+        { title: 'CIS Docker Benchmark', url: 'https://www.cisecurity.org/benchmark/docker' }
+      ]
+    }
   ]
 };
 
@@ -652,6 +1124,42 @@ export const scanningChecklists = {
     { id: 'backup', label: 'Backups are encrypted', severity: 'HIGH' },
     { id: 'retention', label: 'Data retention policy defined', severity: 'MEDIUM' },
     { id: 'minimal', label: 'Data minimization practiced', severity: 'MEDIUM' }
+  ],
+  finance: [
+    { id: 'pci', label: 'PCI DSS compliant payment processing', severity: 'CRITICAL' },
+    { id: 'tokenization', label: 'Payment data tokenized', severity: 'CRITICAL' },
+    { id: 'api-auth', label: 'Strong API authentication', severity: 'CRITICAL' },
+    { id: 'txn-signing', label: 'Transaction signing implemented', severity: 'HIGH' },
+    { id: 'mfa-finance', label: 'MFA for high-value transactions', severity: 'HIGH' },
+    { id: 'kyc', label: 'KYC/AML controls in place', severity: 'HIGH' },
+    { id: 'fraud-detection', label: 'Real-time fraud monitoring', severity: 'MEDIUM' }
+  ],
+  iot: [
+    { id: 'unique-creds', label: 'Unique credentials per device', severity: 'CRITICAL' },
+    { id: 'firmware-signing', label: 'Firmware updates signed', severity: 'CRITICAL' },
+    { id: 'secure-boot', label: 'Secure boot enabled', severity: 'HIGH' },
+    { id: 'debug-disabled', label: 'Debug interfaces disabled', severity: 'HIGH' },
+    { id: 'encrypted-comms', label: 'Encrypted communications', severity: 'HIGH' },
+    { id: 'network-seg', label: 'IoT network segmentation', severity: 'MEDIUM' },
+    { id: 'privacy', label: 'Privacy-by-design implemented', severity: 'MEDIUM' }
+  ],
+  network: [
+    { id: 'wifi-wpa3', label: 'WPA3 or WPA2 WiFi security', severity: 'HIGH' },
+    { id: 'segmentation', label: 'Network segmentation in place', severity: 'HIGH' },
+    { id: 'dnssec', label: 'DNSSEC enabled', severity: 'MEDIUM' },
+    { id: 'vpn-secure', label: 'Secure VPN configuration', severity: 'HIGH' },
+    { id: 'ids-ips', label: 'Intrusion detection/prevention', severity: 'MEDIUM' },
+    { id: 'arp-protection', label: 'ARP spoofing protection', severity: 'MEDIUM' },
+    { id: 'monitoring', label: 'Network traffic monitoring', severity: 'MEDIUM' }
+  ],
+  cloud: [
+    { id: 'private-access', label: 'Resources not publicly exposed', severity: 'CRITICAL' },
+    { id: 'least-privilege', label: 'Least privilege IAM policies', severity: 'CRITICAL' },
+    { id: 'secrets-mgmt', label: 'Secrets in vault/manager', severity: 'CRITICAL' },
+    { id: 'cloud-logging', label: 'Cloud audit logging enabled', severity: 'HIGH' },
+    { id: 'encryption', label: 'Data encrypted at rest', severity: 'HIGH' },
+    { id: 'mfa-cloud', label: 'MFA enabled for all accounts', severity: 'HIGH' },
+    { id: 'cspm', label: 'Security posture monitoring', severity: 'MEDIUM' }
   ]
 };
 
@@ -698,6 +1206,94 @@ export const learningModules = [
     topics: ['Encryption', 'Key Management', 'Access Control'],
     duration: '40 min',
     level: 'Advanced'
+  },
+  {
+    id: 'financial-security',
+    title: 'Financial Systems Security',
+    description: 'Secure payment processing and financial APIs',
+    topics: ['PCI DSS Compliance', 'Payment Tokenization', 'Transaction Security', 'Fraud Prevention'],
+    duration: '75 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'iot-pentesting',
+    title: 'IoT Device Pentesting',
+    description: 'Learn to assess security of IoT and smart devices',
+    topics: ['Firmware Analysis', 'Hardware Hacking', 'IoT Protocols', 'Smart Home Security'],
+    duration: '90 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'network-pentesting',
+    title: 'Network Penetration Testing',
+    description: 'Master network security assessment techniques',
+    topics: ['WiFi Security', 'Network Scanning', 'MITM Attacks', 'VPN Analysis'],
+    duration: '120 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'cloud-security',
+    title: 'Cloud Security & Pentesting',
+    description: 'Secure cloud infrastructure and services',
+    topics: ['AWS/Azure/GCP Security', 'IAM Policies', 'Container Security', 'Serverless Security'],
+    duration: '90 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'retail-security',
+    title: 'E-Commerce & Retail Security',
+    description: 'Protect online retail platforms and POS systems',
+    topics: ['Payment Security', 'Customer Data Protection', 'Inventory Systems', 'Supply Chain Security'],
+    duration: '60 min',
+    level: 'Intermediate'
+  },
+  {
+    id: 'api-security',
+    title: 'API Security Testing',
+    description: 'Comprehensive API penetration testing',
+    topics: ['REST/GraphQL Security', 'Authentication Testing', 'Rate Limiting', 'API Fuzzing'],
+    duration: '75 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'wireless-security',
+    title: 'Wireless Network Security',
+    description: 'WiFi and wireless protocol security assessment',
+    topics: ['WPA3 Security', 'Evil Twin Attacks', 'Wireless Encryption', 'Bluetooth Security'],
+    duration: '60 min',
+    level: 'Intermediate'
+  },
+  {
+    id: 'cryptocurrency-security',
+    title: 'Cryptocurrency & Blockchain Security',
+    description: 'Secure cryptocurrency systems and smart contracts',
+    topics: ['Wallet Security', 'Smart Contract Auditing', 'Exchange Security', 'DeFi Risks'],
+    duration: '90 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'social-engineering',
+    title: 'Social Engineering & Phishing',
+    description: 'Understanding and preventing social engineering attacks',
+    topics: ['Phishing Detection', 'Pretexting', 'Security Awareness', 'Human Factors'],
+    duration: '45 min',
+    level: 'Beginner'
+  },
+  {
+    id: 'incident-response',
+    title: 'Incident Response & Forensics',
+    description: 'Respond to and investigate security incidents',
+    topics: ['Breach Detection', 'Evidence Collection', 'Threat Hunting', 'Recovery Procedures'],
+    duration: '120 min',
+    level: 'Advanced'
+  },
+  {
+    id: 'compliance-frameworks',
+    title: 'Security Compliance Frameworks',
+    description: 'Navigate PCI DSS, GDPR, SOC 2, and other standards',
+    topics: ['PCI DSS', 'GDPR', 'HIPAA', 'SOC 2', 'ISO 27001'],
+    duration: '90 min',
+    level: 'Intermediate'
   }
 ];
 

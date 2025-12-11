@@ -30,6 +30,10 @@ function ScannerForm({ targetType, onComplete }) {
       case 'server': return '192.168.1.1 or server.example.com';
       case 'application': return 'My Application Name';
       case 'data': return 'Database or Data Store Name';
+      case 'finance': return 'Payment Gateway or Financial System';
+      case 'iot': return 'Smart Device or IoT System';
+      case 'network': return 'Network Name or WiFi SSID';
+      case 'cloud': return 'Cloud Account or Project Name';
       default: return 'Enter target';
     }
   };
@@ -41,6 +45,10 @@ function ScannerForm({ targetType, onComplete }) {
       case 'server': return 'Server Address';
       case 'application': return 'Application Name';
       case 'data': return 'Data Store Name';
+      case 'finance': return 'Financial System';
+      case 'iot': return 'IoT Device/System';
+      case 'network': return 'Network Name';
+      case 'cloud': return 'Cloud Environment';
       default: return 'Target';
     }
   };

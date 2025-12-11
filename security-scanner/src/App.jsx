@@ -15,7 +15,11 @@ function App() {
     { id: 'email', name: 'Email', icon: '✉️', description: 'Check email security (SPF, DKIM, DMARC) configuration' },
     { id: 'server', name: 'Server', icon: '🖥️', description: 'Assess server security, firewall, and access controls' },
     { id: 'application', name: 'Application', icon: '📱', description: 'Review application security practices and code safety' },
-    { id: 'data', name: 'Data', icon: '🔐', description: 'Evaluate data protection and encryption practices' }
+    { id: 'data', name: 'Data', icon: '🔐', description: 'Evaluate data protection and encryption practices' },
+    { id: 'finance', name: 'Finance', icon: '💳', description: 'Assess payment systems, trading platforms, and financial API security' },
+    { id: 'iot', name: 'IoT Devices', icon: '🏠', description: 'Test smart home devices, industrial IoT, and embedded systems' },
+    { id: 'network', name: 'Network', icon: '🔌', description: 'Evaluate WiFi, VPN, DNS, and network infrastructure security' },
+    { id: 'cloud', name: 'Cloud', icon: '☁️', description: 'Review cloud infrastructure, containers, and serverless security' }
   ]
 
   const handleScanComplete = (target, answers) => {
