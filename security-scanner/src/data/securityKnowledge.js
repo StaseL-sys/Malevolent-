@@ -1081,7 +1081,7 @@ export const vulnerabilityDatabase = {
       name: 'Modern Ransomware Attacks',
       category: 'threats',
       severity: 'CRITICAL',
-      description: 'Advanced ransomware strains using double extortion, supply chain attacks, and encryption to extort victims.',
+      description: 'Advanced ransomware strains using double extortion tactics and file encryption to extort victims.',
       impact: 'Complete data encryption, data exfiltration, business disruption, financial losses, regulatory penalties, reputational damage.',
       detection: 'Monitor for unusual file encryption activity, lateral movement, data exfiltration patterns, and known ransomware indicators of compromise (IOCs)',
       howToFix: [
@@ -1233,7 +1233,7 @@ export const vulnerabilityDatabase = {
         'Educate users on cryptojacking risks'
       ],
       resources: [
-        { title: 'Cryptojacking Defense Guide', url: 'https://www.nomoreransom.org/en/prevention-advice.html' }
+        { title: 'Cryptojacking Prevention', url: 'https://www.cisa.gov/news-events/cybersecurity-advisories' }
       ]
     },
     {
