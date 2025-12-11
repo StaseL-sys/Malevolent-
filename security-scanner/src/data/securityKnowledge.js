@@ -803,7 +803,7 @@ export const vulnerabilityDatabase = {
         'Use chip-level security features (TrustZone, etc.)'
       ],
       resources: [
-        { title: 'Hardware Hacking Guide', url: 'https://www.iacr.org/books/2010_rabaey_low-power.pdf' }
+        { title: 'IoT Hardware Security Best Practices', url: 'https://www.owasp.org/index.php/IoT_Security_Guidance' }
       ]
     },
     {

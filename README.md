@@ -177,7 +177,6 @@ The platform includes 16 comprehensive learning modules:
 - API Security Testing
 - Cryptocurrency & Blockchain Security
 - Incident Response & Forensics
-- Data retention policies
 
 ## Tech Stack
 
