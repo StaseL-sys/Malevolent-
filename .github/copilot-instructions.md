@@ -37,7 +37,7 @@ Malevolent-/
 
 - **React 19**: UI framework
 - **Vite 7**: Build tool and development server
-- **Vitest**: Testing framework
+- **Vitest 4**: Testing framework
 - **ESLint**: Code linting with React-specific rules
 
 ## Development Workflow
