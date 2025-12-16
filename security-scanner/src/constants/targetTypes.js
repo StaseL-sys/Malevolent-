@@ -70,7 +70,7 @@ export const TARGET_TYPES = [
     id: 'threats', 
     name: 'Threat Defense', 
     shortName: 'Modern Threats',
-    icon: '🛡️', 
+    icon: '⚠️', 
     description: 'Assess defenses against modern threats: ransomware, malware, phishing, and attacks' 
   }
 ];
