@@ -46,24 +46,24 @@ describe('Security Knowledge Base', () => {
         });
 
         it('should have required properties on each vulnerability', () => {
-          vulnerabilityDatabase[category].forEach(vuln => {
-            expect(vuln).toHaveProperty('id');
-            expect(vuln).toHaveProperty('name');
-            expect(vuln).toHaveProperty('category', category);
-            expect(vuln).toHaveProperty('severity');
-            expect(vuln).toHaveProperty('description');
-            expect(vuln).toHaveProperty('impact');
-            expect(vuln).toHaveProperty('detection');
-            expect(vuln).toHaveProperty('howToFix');
-            expect(Array.isArray(vuln.howToFix)).toBe(true);
-            expect(vuln.howToFix.length).toBeGreaterThan(0);
+          vulnerabilityDatabase[category].forEach(vulnerability => {
+            expect(vulnerability).toHaveProperty('id');
+            expect(vulnerability).toHaveProperty('name');
+            expect(vulnerability).toHaveProperty('category', category);
+            expect(vulnerability).toHaveProperty('severity');
+            expect(vulnerability).toHaveProperty('description');
+            expect(vulnerability).toHaveProperty('impact');
+            expect(vulnerability).toHaveProperty('detection');
+            expect(vulnerability).toHaveProperty('howToFix');
+            expect(Array.isArray(vulnerability.howToFix)).toBe(true);
+            expect(vulnerability.howToFix.length).toBeGreaterThan(0);
           });
         });
 
         it('should have valid severity levels', () => {
           const validSeverities = Object.keys(severityLevels);
-          vulnerabilityDatabase[category].forEach(vuln => {
-            expect(validSeverities).toContain(vuln.severity);
+          vulnerabilityDatabase[category].forEach(vulnerability => {
+            expect(validSeverities).toContain(vulnerability.severity);
           });
         });
       });
