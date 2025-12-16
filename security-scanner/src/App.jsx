@@ -24,8 +24,8 @@ function App() {
   ]
 
   const handleScanComplete = (target, answers) => {
-    const results = performSecurityAssessment(selectedTargetType, target, answers)
-    setScanResults(results)
+    const assessmentResults = performSecurityAssessment(selectedTargetType, target, answers)
+    setScanResults(assessmentResults)
   }
 
   const handleBackToScanner = () => {
@@ -67,15 +67,15 @@ function App() {
                   Select the type of asset you want to assess for security vulnerabilities.
                 </p>
                 <div className="target-grid">
-                  {targetTypes.map(type => (
+                  {targetTypes.map(targetType => (
                     <button
-                      key={type.id}
+                      key={targetType.id}
                       className="target-card"
-                      onClick={() => setSelectedTargetType(type.id)}
+                      onClick={() => setSelectedTargetType(targetType.id)}
                     >
-                      <span className="target-icon">{type.icon}</span>
-                      <h3>{type.name}</h3>
-                      <p>{type.description}</p>
+                      <span className="target-icon">{targetType.icon}</span>
+                      <h3>{targetType.name}</h3>
+                      <p>{targetType.description}</p>
                     </button>
                   ))}
                 </div>
@@ -91,8 +91,8 @@ function App() {
                   ← Choose different target
                 </button>
                 <h2>
-                  {targetTypes.find(t => t.id === selectedTargetType)?.icon}{' '}
-                  {targetTypes.find(t => t.id === selectedTargetType)?.name} Security Assessment
+                  {targetTypes.find(targetType => targetType.id === selectedTargetType)?.icon}{' '}
+                  {targetTypes.find(targetType => targetType.id === selectedTargetType)?.name} Security Assessment
                 </h2>
                 <ScannerForm 
                   targetType={selectedTargetType} 
