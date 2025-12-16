@@ -55,18 +55,28 @@ export function performSecurityAssessment(targetType, target, answers) {
       const relatedVuln = vulnLookup.get(item.id) || 
                          vulnLookup.get(itemPrefix) || 
                          vulnerabilities[0];
+  checklist.forEach(checklistItem => {
+    const answer = answers[checklistItem.id];
+    const severityLevel = severityLevels[checklistItem.severity];
+    maxScore += severityLevel.score;
+
+    if (answer === 'no' || answer === 'unknown') {
+      // Find related vulnerability details
+      const relatedVulnerability = vulnerabilities.find(vulnerability => 
+        vulnerability.id.includes(checklistItem.id) || checklistItem.id.includes(vulnerability.id.split('-')[0])
+      ) || vulnerabilities[0];
 
       findings.push({
-        id: item.id,
-        label: item.label,
+        id: checklistItem.id,
+        label: checklistItem.label,
         status: answer,
-        severity: item.severity,
-        severityInfo: severity,
-        relatedVulnerability: relatedVuln,
-        recommendation: getRecommendation(item.id, targetType)
+        severity: checklistItem.severity,
+        severityInfo: severityLevel,
+        relatedVulnerability: relatedVulnerability,
+        recommendation: getRecommendation(checklistItem.id, targetType)
       });
     } else {
-      totalScore += severity.score;
+      totalScore += severityLevel.score;
     }
   }
 
@@ -163,6 +173,8 @@ function generateSummary(findings, score) {
     if (finding.severity === 'CRITICAL') criticalCount++;
     else if (finding.severity === 'HIGH') highCount++;
   }
+  const criticalCount = findings.filter(finding => finding.severity === 'CRITICAL').length;
+  const highCount = findings.filter(finding => finding.severity === 'HIGH').length;
 
   let summary = '';
   
@@ -231,6 +243,17 @@ export function searchVulnerabilities(keyword) {
   
   const searchTerm = keyword.toLowerCase();
   const searchIndex = buildSearchIndex();
+  Object.values(vulnerabilityDatabase).forEach(categoryVulnerabilities => {
+    categoryVulnerabilities.forEach(vulnerability => {
+      if (
+        vulnerability.name.toLowerCase().includes(searchTerm) ||
+        vulnerability.description.toLowerCase().includes(searchTerm) ||
+        vulnerability.id.toLowerCase().includes(searchTerm)
+      ) {
+        results.push(vulnerability);
+      }
+    });
+  });
   
   // Use filter and map instead of nested loops for better performance
   return searchIndex

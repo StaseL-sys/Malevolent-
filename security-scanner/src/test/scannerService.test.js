@@ -48,8 +48,8 @@ describe('Scanner Service', () => {
 
       expect(result.findings.length).toBeGreaterThan(0);
       expect(result.score).toBeLessThan(100);
-      expect(result.findings.some(f => f.id === 'https')).toBe(true);
-      expect(result.findings.some(f => f.id === 'headers')).toBe(true);
+      expect(result.findings.some(finding => finding.id === 'https')).toBe(true);
+      expect(result.findings.some(finding => finding.id === 'headers')).toBe(true);
     });
 
     it('should treat "unknown" as a finding', () => {

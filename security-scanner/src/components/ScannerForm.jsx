@@ -15,12 +15,12 @@ function ScannerForm({ targetType, onComplete }) {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     onComplete(target, answers);
   };
 
-  const isComplete = checklist.every(item => answers[item.id] !== undefined);
+  const isComplete = checklist.every(checklistItem => answers[checklistItem.id] !== undefined);
   const answeredCount = Object.keys(answers).length;
 
   // Memoize placeholder and label to avoid recalculating on every render
@@ -64,8 +64,8 @@ function ScannerForm({ targetType, onComplete }) {
           <input
             type="text"
             value={target}
-            onChange={(e) => setTarget(e.target.value)}
-            placeholder={placeholder}
+            onChange={(event) => setTarget(event.target.value)}
+            placeholder={getPlaceholder()}
             className="target-input"
             required
           />
@@ -90,37 +90,37 @@ function ScannerForm({ targetType, onComplete }) {
       </div>
 
       <div className="checklist">
-        {checklist.map((item, index) => (
-          <div key={item.id} className="checklist-item">
+        {checklist.map((checklistItem, index) => (
+          <div key={checklistItem.id} className="checklist-item">
             <div className="checklist-header">
               <span className="checklist-number">{index + 1}</span>
-              <span className="checklist-label">{item.label}</span>
+              <span className="checklist-label">{checklistItem.label}</span>
               <span 
                 className="severity-badge"
-                style={{ backgroundColor: severityLevels[item.severity].color }}
+                style={{ backgroundColor: severityLevels[checklistItem.severity].color }}
               >
-                {item.severity}
+                {checklistItem.severity}
               </span>
             </div>
             <div className="answer-buttons">
               <button
                 type="button"
-                className={`answer-btn yes ${answers[item.id] === 'yes' ? 'selected' : ''}`}
-                onClick={() => handleAnswerChange(item.id, 'yes')}
+                className={`answer-btn yes ${answers[checklistItem.id] === 'yes' ? 'selected' : ''}`}
+                onClick={() => handleAnswerChange(checklistItem.id, 'yes')}
               >
                 ✓ Yes
               </button>
               <button
                 type="button"
-                className={`answer-btn no ${answers[item.id] === 'no' ? 'selected' : ''}`}
-                onClick={() => handleAnswerChange(item.id, 'no')}
+                className={`answer-btn no ${answers[checklistItem.id] === 'no' ? 'selected' : ''}`}
+                onClick={() => handleAnswerChange(checklistItem.id, 'no')}
               >
                 ✗ No
               </button>
               <button
                 type="button"
-                className={`answer-btn unknown ${answers[item.id] === 'unknown' ? 'selected' : ''}`}
-                onClick={() => handleAnswerChange(item.id, 'unknown')}
+                className={`answer-btn unknown ${answers[checklistItem.id] === 'unknown' ? 'selected' : ''}`}
+                onClick={() => handleAnswerChange(checklistItem.id, 'unknown')}
               >
                 ? Unknown
               </button>
