@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getGradeColor } from '../utils/gradeUtils';
 import './SecurityReport.css';
 
 function SecurityReport({ results, onBack }) {
@@ -8,17 +9,6 @@ function SecurityReport({ results, onBack }) {
 
   const toggleFinding = (findingId) => {
     setExpandedFinding(expandedFinding === findingId ? null : findingId);
-  };
-
-  const getGradeColor = (letter) => {
-    switch (letter) {
-      case 'A': return '#16a34a';
-      case 'B': return '#22c55e';
-      case 'C': return '#ca8a04';
-      case 'D': return '#ea580c';
-      case 'F': return '#dc2626';
-      default: return '#888';
-    }
   };
 
   return (

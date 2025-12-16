@@ -4,6 +4,7 @@
  */
 
 import { vulnerabilityDatabase, scanningChecklists, severityLevels } from '../data/securityKnowledge';
+import { calculateGrade } from '../utils/gradeUtils';
 
 /**
  * Analyze a target and return security findings
@@ -114,17 +115,6 @@ function getRecommendation(checkId) {
   };
   
   return recommendations[checkId] || 'Review and address this security control.';
-}
-
-/**
- * Calculate letter grade from score
- */
-function calculateGrade(score) {
-  if (score >= 90) return { letter: 'A', description: 'Excellent' };
-  if (score >= 80) return { letter: 'B', description: 'Good' };
-  if (score >= 70) return { letter: 'C', description: 'Fair' };
-  if (score >= 60) return { letter: 'D', description: 'Poor' };
-  return { letter: 'F', description: 'Critical' };
 }
 
 /**
