@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { getChecklist } from '../services/scannerService';
 import { severityLevels } from '../data/securityKnowledge';
 import './ScannerForm.css';
@@ -23,7 +23,8 @@ function ScannerForm({ targetType, onComplete }) {
   const isComplete = checklist.every(item => answers[item.id] !== undefined);
   const answeredCount = Object.keys(answers).length;
 
-  const getPlaceholder = () => {
+  // Memoize placeholder and label to avoid recalculating on every render
+  const placeholder = useMemo(() => {
     switch (targetType) {
       case 'website': return 'https://example.com';
       case 'email': return 'example.com';
@@ -37,9 +38,9 @@ function ScannerForm({ targetType, onComplete }) {
       case 'threats': return 'Organization or System Name';
       default: return 'Enter target';
     }
-  };
+  }, [targetType]);
 
-  const getLabel = () => {
+  const label = useMemo(() => {
     switch (targetType) {
       case 'website': return 'Website URL';
       case 'email': return 'Email Domain';
@@ -53,18 +54,18 @@ function ScannerForm({ targetType, onComplete }) {
       case 'threats': return 'Organization/System';
       default: return 'Target';
     }
-  };
+  }, [targetType]);
 
   return (
     <form className="scanner-form" onSubmit={handleSubmit}>
       <div className="form-section">
         <label className="target-label">
-          {getLabel()}
+          {label}
           <input
             type="text"
             value={target}
             onChange={(e) => setTarget(e.target.value)}
-            placeholder={getPlaceholder()}
+            placeholder={placeholder}
             className="target-input"
             required
           />
