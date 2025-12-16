@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import './SecurityReport.css';
 
 function SecurityReport({ results, onBack }) {
@@ -6,9 +6,10 @@ function SecurityReport({ results, onBack }) {
 
   const { target, targetType, score, grade, findings, passedChecks, totalChecks, summary } = results;
 
-  const toggleFinding = (findingId) => {
-    setExpandedFinding(expandedFinding === findingId ? null : findingId);
-  };
+  // Memoize toggle function to prevent unnecessary re-renders
+  const toggleFinding = useCallback((findingId) => {
+    setExpandedFinding(prev => prev === findingId ? null : findingId);
+  }, []);
 
   const getGradeColor = (letter) => {
     switch (letter) {
