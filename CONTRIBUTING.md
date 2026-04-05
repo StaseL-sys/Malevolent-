@@ -239,4 +239,24 @@ If you have questions about contributing, feel free to:
 - Comment on a relevant issue
 - Reach out to the maintainers
 
+# Community Contribution Review Guidelines
+
+## Purpose
+The purpose of this document is to outline the review and quality assurance process for all community contributions and edits made to the repository. This ensures that all contributions meet the expected standards of quality and are in alignment with the goals of the project.
+
+## Contribution Process
+1. **Submission**: Contributors must submit their changes via pull requests. 
+2. **Initial Review**: A designated reviewer will conduct an initial review of the pull request to ensure adherence to project guidelines.
+3. **Feedback**: Comments and feedback will be provided to the contributor. This may include requests for changes, additional information, or clarifications.
+4. **Revisions**: Contributors will need to address the feedback and push the changes to the pull request.
+5. **Final Review**: The reviewer will conduct a final review after the contributor makes the necessary adjustments.
+6. **Approval and Merge**: Upon approval, the pull request will be merged into the main branch.
+
+## Quality Assurance
+- All contributions must be tested before submission.
+- Code must follow the established style guidelines.
+- Documentation must be updated to reflect any changes.
+
+## Conclusion
+Following these guidelines will help maintain the quality and integrity of the repository, ensuring that all contributions are valuable and aligned with the project’s objectives.
 Thank you for contributing to Malevolent- and helping make cybersecurity education accessible to all! 🔒🎓
