@@ -173,8 +173,6 @@ function generateSummary(findings, score) {
     if (finding.severity === 'CRITICAL') criticalCount++;
     else if (finding.severity === 'HIGH') highCount++;
   }
-  const criticalCount = findings.filter(finding => finding.severity === 'CRITICAL').length;
-  const highCount = findings.filter(finding => finding.severity === 'HIGH').length;
 
   let summary = '';
   
